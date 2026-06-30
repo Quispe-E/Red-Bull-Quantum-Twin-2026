@@ -8,6 +8,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import Navbar from './navbar.jsx'
 import Graficas from './graficas.jsx'
 import Home from './home.jsx'
+import Alertas from './alertas.jsx'
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<Navigate to={"/home"} replace/>}/>
         <Route path="/home" element={<Home/>} />
         <Route path="/graficas" element={<Graficas/>} />
+        <Route path="/alertas" element={<Alertas/>} />
       </Routes>
     </div>
   )
