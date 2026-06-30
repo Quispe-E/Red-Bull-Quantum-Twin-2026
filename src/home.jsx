@@ -17,7 +17,7 @@ export default function Home() {
 
         <p className="hero__description">
           Plataforma de gemelo digital para telemetría y análisis de rendimiento
-          en Formula 1. Bienvenido al panel principal del proyecto.
+          en Formula 1. Bienvenido al panel principal.
         </p>
 
         <div className="hero__divider" aria-hidden="true">

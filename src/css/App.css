@@ -1,12 +1,4 @@
-/* ============================================================
-   RED BULL QUANTUM-TWIN 2026 — App.css
-   Layout global · Fondo oscuro cohesivo
-   ============================================================ */
 
-/* Las variables CSS están en navbar.css (cargado primero).
-   App.css aplica estilos al root y al layout general.       */
-
-/* ── Reset mínimo ── */
 html {
   scroll-behavior: smooth;
 }
@@ -26,12 +18,6 @@ body {
   flex-direction: column;
   min-height: 100vh;
   background: var(--clr-void);
-  /* Punto focal sutil de luz azul en el centro */
-  background-image: radial-gradient(
-    ellipse 120% 60% at 30% 60%,
-    rgba(14, 40, 90, 0.35) 0%,
-    transparent 70%
-  );
 }
 
 /* ── Zona de contenido principal (desplaza el Navbar fijo) ── */
