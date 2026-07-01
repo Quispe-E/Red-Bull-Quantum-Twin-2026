@@ -1,31 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './css/App.css'
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { lazy, Suspense } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import './css/App.css';
+import Navbar from './navbar';
+import Home from './home';
+import Graficas from './graficas';
 
-import Navbar from './navbar.jsx'
-import Graficas from './graficas.jsx'
-import Home from './home.jsx'
-import Alertas from './alertas.jsx'
-
-
-function App() {
-  return (
-    <div>
-      <Navbar/>
-      <Routes>
-        <Route path="/" element={<Navigate to={"/home"} replace/>}/>
-        <Route path="/home" element={<Home/>} />
-        <Route path="/graficas" element={<Graficas/>} />
-        <Route path="/alertas" element={<Alertas/>} />
-      </Routes>
-    </div>
-  )
-
-  
-  
+function AlertasVacio() {
+  return <section className="page alertas-vacio" aria-label="Alertas" />;
 }
 
-export default App
+const Alertas = lazy(() =>
+  import('./alertas').then((mod) =>
+    mod.default ? mod : { default: AlertasVacio }
+  )
+);
+
+export default function App() {
+  return (
+    <div className="app">
+      <Navbar />
+
+      <main className="app__main" id="main-content">
+        <Suspense fallback={<AlertasVacio />}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/graficas" element={<Graficas />} />
+            <Route path="/alertas" element={<Alertas />} />
+          </Routes>
+        </Suspense>
+      </main>
+    </div>
+  );
+}
