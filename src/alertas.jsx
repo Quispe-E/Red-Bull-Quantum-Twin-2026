@@ -175,13 +175,13 @@ function Alertas() {
           <div className="input-group">
             <span className="input-label">Valores Rápidos de Prueba</span>
             <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-              <button onClick={() => setQuickValue(1.5)} className="btn btn-secondary" style={{ padding: "6px 10px", fontSize: "12px" }}>
+              <button onClick={() => setQuickValue(1.5)} className="btn btn-low" style={{ padding: "6px 10px", fontSize: "12px" }}>
                 1.5s (Bajo)
               </button>
-              <button onClick={() => setQuickValue(3.0)} className="btn btn-secondary" style={{ padding: "6px 10px", fontSize: "12px" }}>
+              <button onClick={() => setQuickValue(3.0)} className="btn btn-normal" style={{ padding: "6px 10px", fontSize: "12px" }}>
                 3.0s (Óptimo)
               </button>
-              <button onClick={() => setQuickValue(4.8)} className="btn btn-secondary" style={{ padding: "6px 10px", fontSize: "12px" }}>
+              <button onClick={() => setQuickValue(4.8)} className="btn btn-danger" style={{ padding: "6px 10px", fontSize: "12px" }}>
                 4.8s (Peligro)
               </button>
             </div>
@@ -190,7 +190,7 @@ function Alertas() {
           <div className="action-buttons">
             <button
               onClick={() => setIsSimulating(!isSimulating)}
-              className={`btn btn-primary ${isSimulating ? "btn-active" : ""}`}
+              className={`btn btn-primary ${isSimulating ? `btn-active state-${state}` : ""}`}
             >
               {isSimulating ? "⏸ Detener Telemetría" : "▶ Iniciar Telemetría Realtime"}
             </button>

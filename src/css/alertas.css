@@ -5,8 +5,8 @@
   --status-green-glow: rgba(0, 230, 118, 0.4);
   --status-red: #ff1744;
   --status-red-glow: rgba(255, 23, 68, 0.45);
-  --status-amber: #ff9100;
-  --status-amber-glow: rgba(255, 145, 0, 0.4);
+  --status-yellow: #ffea00;
+  --status-yellow-glow: rgba(255, 234, 0, 0.35);
   --glass-bg: rgba(30, 32, 43, 0.7);
   --glass-border: rgba(255, 255, 255, 0.08);
 }
@@ -85,8 +85,8 @@
 }
 
 .status-panel.state-low {
-  border-color: var(--status-amber);
-  box-shadow: 0 0 25px var(--status-amber-glow), inset 0 0 12px rgba(255, 145, 0, 0.05);
+  border-color: var(--status-yellow);
+  box-shadow: 0 0 25px var(--status-yellow-glow), inset 0 0 12px rgba(255, 234, 0, 0.05);
 }
 
 @keyframes pulse-danger-border {
@@ -129,9 +129,9 @@
 }
 
 .state-low .status-badge {
-  background: rgba(255, 145, 0, 0.15);
-  color: var(--status-amber);
-  border: 1px solid var(--status-amber);
+  background: rgba(255, 234, 0, 0.15);
+  color: var(--status-yellow);
+  border: 1px solid var(--status-yellow);
 }
 
 @keyframes flash-badge {
@@ -164,7 +164,7 @@
 /* Colores dinámicos para los números */
 .state-normal .value-number { color: var(--status-green); }
 .state-danger .value-number { color: var(--status-red); }
-.state-low .value-number { color: var(--status-amber); }
+.state-low .value-number { color: var(--status-yellow); }
 
 /* Mensaje y Descripción */
 .status-info {
@@ -300,11 +300,12 @@
 .btn-primary {
   background: var(--accent);
   color: #fff;
+  background: #4b86e0;
   border: 1px solid transparent;
 }
 
 .btn-primary:hover {
-  background: #b85eff;
+  background: rgb(40, 87, 158);
   box-shadow: 0 0 15px var(--accent-border);
 }
 
@@ -319,8 +320,62 @@
   border-color: var(--text);
 }
 
+.btn-low {
+  background: rgba(255, 234, 0, 0.05);
+  color: var(--status-yellow);
+  border: 1px solid var(--status-yellow);
+}
+
+.btn-low:hover {
+  background: rgba(255, 234, 0, 0.15);
+  box-shadow: 0 0 10px var(--status-yellow-glow);
+}
+
+.btn-normal {
+  background: rgba(0, 230, 118, 0.05);
+  color: var(--status-green);
+  border: 1px solid var(--status-green);
+}
+
+.btn-normal:hover {
+  background: rgba(0, 230, 118, 0.15);
+  box-shadow: 0 0 10px var(--status-green-glow);
+}
+
+.btn-danger {
+  background: rgba(255, 23, 68, 0.05);
+  color: var(--status-red);
+  border: 1px solid var(--status-red);
+}
+
+.btn-danger:hover {
+  background: rgba(255, 23, 68, 0.15);
+  box-shadow: 0 0 10px var(--status-red-glow);
+}
+
 .btn-active {
   animation: pulse-sim-btn 1.5s infinite alternate;
+}
+
+.btn-active.state-low {
+  background: var(--status-yellow);
+  color: #121214;
+  border-color: var(--status-yellow);
+  animation: pulse-sim-yellow 1.5s infinite alternate;
+}
+
+.btn-active.state-normal {
+  background: var(--status-green);
+  color: #121214;
+  border-color: var(--status-green);
+  animation: pulse-sim-green 1.5s infinite alternate;
+}
+
+.btn-active.state-danger {
+  background: var(--status-red);
+  color: #ffffff;
+  border-color: var(--status-red);
+  animation: pulse-sim-red 1.5s infinite alternate;
 }
 
 @keyframes pulse-sim-btn {
@@ -330,6 +385,21 @@
   100% {
     box-shadow: 0 0 15px rgba(170, 59, 255, 0.8);
   }
+}
+
+@keyframes pulse-sim-yellow {
+  0% { box-shadow: 0 0 5px var(--status-yellow-glow); }
+  100% { box-shadow: 0 0 18px rgba(255, 234, 0, 0.7); }
+}
+
+@keyframes pulse-sim-green {
+  0% { box-shadow: 0 0 5px var(--status-green-glow); }
+  100% { box-shadow: 0 0 18px rgba(0, 230, 118, 0.75); }
+}
+
+@keyframes pulse-sim-red {
+  0% { box-shadow: 0 0 5px var(--status-red-glow); }
+  100% { box-shadow: 0 0 18px rgba(255, 23, 68, 0.85); }
 }
 
 /* Registro de Eventos */
@@ -400,7 +470,7 @@
 
 .log-item.state-normal { border-left-color: var(--status-green); }
 .log-item.state-danger { border-left-color: var(--status-red); }
-.log-item.state-low { border-left-color: var(--status-amber); }
+.log-item.state-low { border-left-color: var(--status-yellow); }
 
 .log-time {
   color: var(--text);
