@@ -12,3 +12,11 @@ export const fetchRender = (ersStatus = 'NORMAL') =>
   fetch(`${BASE_URL}/api/render?ers_status=${encodeURIComponent(ersStatus)}`).then((r) =>
     r.json(),
   );
+
+export const fetchDbStatus = () => fetch(`${BASE_URL}/api/db-status`).then((r) => r.json());
+export const fetchModelSource = () => fetch(`${BASE_URL}/api/model/source`).then((r) => r.json());
+export const fetchRiskClassification = () =>
+  fetch(`${BASE_URL}/api/risk-classification`).then((r) => r.json());
+export const fetchStrategyClusters = () =>
+  fetch(`${BASE_URL}/api/strategy-clusters`).then((r) => r.json());
+export const fetchSafety = () => fetch(`${BASE_URL}/api/safety`).then((r) => r.json());

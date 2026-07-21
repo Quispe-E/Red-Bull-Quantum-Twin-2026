@@ -1,4 +1,124 @@
 .alertas-page {
   min-height: calc(100vh - 36px);
   background: #0a0a0a;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.alertas-title {
+  font-size: 1.2rem;
+  color: #ffcc00;
+  letter-spacing: 0.5px;
+  margin: 0 0 16px;
+}
+
+.alertas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.alert-card {
+  background: #0d1117;
+  border: 1px solid #1e2a3a;
+  border-radius: 3px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.alert-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.alert-card__title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.alert-card__subtitle {
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: #8892a4;
+  text-transform: uppercase;
+}
+
+.alert-card__status {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: #8892a4;
+  letter-spacing: 0.5px;
+}
+
+.alert-card__badge {
+  align-self: flex-start;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 4px 10px;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+
+.alert-card__badge--normal  { background: rgba(0, 255, 136, 0.15); color: #00ff88; border: 1px solid #00ff88; }
+.alert-card__badge--alerta  { background: rgba(255, 204, 0, 0.15); color: #ffcc00; border: 1px solid #ffcc00; }
+.alert-card__badge--critico { background: #cc0000; color: #ffffff; }
+
+.alert-card__bars {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.prob-bar__label {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  color: #8892a4;
+  margin-bottom: 2px;
+}
+
+.prob-bar__track {
+  height: 6px;
+  background: #0a0a0a;
+  border: 1px solid #1e2a3a;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.prob-bar__fill {
+  height: 100%;
+  border-radius: 3px;
+}
+
+.prob-bar__fill--normal  { background: #00ff88; }
+.prob-bar__fill--alerta  { background: #ffcc00; }
+.prob-bar__fill--critico { background: #cc0000; }
+
+.alert-card__confidence {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.alert-card__confidence-label {
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: #8892a4;
+}
+
+.alert-card__confidence-value {
+  font-family: 'Courier New', monospace;
+  font-size: 20px;
+  font-weight: 700;
+  color: #00d4ff;
 }

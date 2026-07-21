@@ -868,6 +868,81 @@
   border: 1px solid #ffcc00;
 }
 
+/* ── System status badge ── */
+.system-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 10px;
+  padding-left: 10px;
+  border-left: 1px solid #1e2a3a;
+}
+
+.system-status__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.system-status__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.system-status__dot--green   { background: #00ff88; box-shadow: 0 0 6px rgba(0, 255, 136, 0.6); }
+.system-status__dot--yellow  { background: #ffcc00; box-shadow: 0 0 6px rgba(255, 204, 0, 0.6); }
+.system-status__dot--cyan    { background: #00d4ff; box-shadow: 0 0 6px rgba(0, 212, 255, 0.6); }
+.system-status__dot--gray    { background: #8892a4; }
+.system-status__dot--unknown { background: #8892a4; opacity: 0.6; }
+
+.system-status__label {
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  color: #8892a4;
+  white-space: nowrap;
+}
+
+.system-status__item--tooltip {
+  cursor: default;
+}
+
+.system-status__tooltip {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  z-index: 10;
+  background: #0d1117;
+  border: 1px solid #1e2a3a;
+  border-radius: 3px;
+  padding: 6px 8px;
+  min-width: 160px;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.system-status__item--tooltip:hover .system-status__tooltip {
+  display: flex;
+}
+
+.system-status__tooltip-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  color: #8892a4;
+  white-space: nowrap;
+}
+
+.system-status__tooltip-source {
+  margin-left: auto;
+  color: #ffffff;
+}
+
 /* ── API loading / error ── */
 .api-overlay {
   flex: 1;

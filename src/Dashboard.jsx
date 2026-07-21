@@ -12,6 +12,7 @@ import {
   fetchRecommendations,
   fetchStrategy,
 } from './api/client';
+import SystemStatusBadge from './SystemStatusBadge';
 import './css/App.css';
 
 const TIRE_KEYS = ['FL', 'FR', 'RL', 'RR'];
@@ -303,6 +304,7 @@ export default function Dashboard() {
             <span>WND 12km/h</span>
           </span>
           <span className="clock">{clock}</span>
+          <SystemStatusBadge />
         </div>
         {/* SIMULATION CONTROLS */}
         <div style={{

@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import './css/graficas.css';
 import img1 from './assets/motorbat1.jpg';
 import img2 from './assets/diagram.png';
@@ -10,7 +11,11 @@ import {
   Tooltip,
   CartesianGrid,
   ResponsiveContainer,
+  ScatterChart,
+  Scatter,
+  ZAxis,
 } from 'recharts';
+import { fetchStrategyClusters } from './api/client';
 
 const data = [
   { tiempo: '0s', velocidad: 0, bateria: 100 },
@@ -27,6 +32,32 @@ const data = [
 ];
 
 export default function Graficas() {
+  const [clusters, setClusters] = useState(null);
+  const [clustersLoading, setClustersLoading] = useState(true);
+  const [clustersError, setClustersError] = useState(false);
+
+  useEffect(() => {
+    const fetchAll = async () => {
+      try {
+        const data = await fetchStrategyClusters();
+        setClusters(data);
+        setClustersError(false);
+      } catch (e) {
+        console.error('Strategy clusters error:', e);
+        setClustersError(true);
+      } finally {
+        setClustersLoading(false);
+      }
+    };
+
+    fetchAll();
+    const interval = setInterval(fetchAll, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const clusterPoints = clusters?.points ?? null;
+  const currentPoint = clusters?.current_point ?? null;
+
   return (
     <div className="graficas-page">
       <h2 className="title">Telemetría F1</h2>
@@ -94,6 +125,47 @@ export default function Graficas() {
           </p>
         </div>
         <img src={img3} alt="Aerodinámica activa" className="imagen" />
+      </div>
+
+      <h2 className="title">Clusters de Estrategia</h2>
+
+      <div className="cluster-section">
+        <div className="chart-card cluster-card">
+          <h3 className="chart-title">Cluster Sugerido</h3>
+          {clustersLoading && <p className="cluster-status">Cargando...</p>}
+          {!clustersLoading && clustersError && (
+            <p className="cluster-status">Sin datos disponibles</p>
+          )}
+          {!clustersLoading && !clustersError && (
+            <div className="cluster-info">
+              <span className="cluster-info__id">Cluster #{clusters?.cluster_id ?? '—'}</span>
+              <p className="cluster-info__text">
+                {clusters?.interpretation ?? 'Sin interpretación disponible.'}
+              </p>
+            </div>
+          )}
+        </div>
+
+        <div className="chart-card">
+          <h3 className="chart-title">Mapa de Clusters</h3>
+          {clusterPoints && currentPoint ? (
+            <ResponsiveContainer width="100%" height={300}>
+              <ScatterChart margin={{ top: 10, right: 20, bottom: 10, left: 0 }}>
+                <CartesianGrid stroke="#333" />
+                <XAxis type="number" dataKey="x" stroke="#fff" name="x" />
+                <YAxis type="number" dataKey="y" stroke="#fff" name="y" />
+                <ZAxis range={[60, 60]} />
+                <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+                <Scatter name="Clusters" data={clusterPoints} fill="#ffcc00" />
+                <Scatter name="Actual" data={[currentPoint]} fill="#ff3b3b" />
+              </ScatterChart>
+            </ResponsiveContainer>
+          ) : (
+            <p className="cluster-status">
+              El backend aún no expone coordenadas 2D para este gráfico.
+            </p>
+          )}
+        </div>
       </div>
     </div>
   );
