@@ -1,0 +1,4 @@
+.alertas-page {
+  min-height: calc(100vh - 36px);
+  background: #0a0a0a;
+}
